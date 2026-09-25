@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome To triva hub </title>
+
+<style>
+  *{
+    box-sizing:border-box;
+
+  }
+   body { 
+    margin:0;
+    font-family:arial,sans-serif;
+    background:#050505;
+    color :white;
+
+
+}
+  nav {
+    position: sticky;
+    top:0;
+    z-index: 1000;
+     
+    background : #000;
+    padding: 18 px 30px;
+   
+   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    .logo{
+    font-size: 24px;
+    font-weight: bold;
+    }
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+    .nav-links a{
+      color:white;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    .nav-links a:hover {
+      color:#1683ff;
+    }
+    .hero{
+      min-height: calc (100vh-70px);
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center ;
+      
+      text-align: center;
+     padding: 40px;
+
+    background:
+    linear-gardient(rgba(0,0,0,.55),rgba(0,0,0,.75)),
+    url("ai-5.jpeg");
+
+    background-size:cover;
+    background-position: center ;
+  }
+  .hero p{
+    max-width:650px;
+    font-size:20px;
+    line-height:1.6;
+  }
+  .trivabutton{
+    margin-top:30px;
+    padding:15px 30px;
+    
+    background:#1683ff;
+    color: white;
+    
+    border:none ;
+    border-radius: 8px;
+    
+    font-size:18px;
+    text-decoration:none ;
+    
+    transition: 0.3s;
+  }
+  .triva-button:hover{
+    background: #005dcc;
+    transform:scale(1.05);
+  }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Triva Hub</div>
+    <div class="nav-links ">
+      <a href="Trivahub.html">Home</a>
+      <a href="Triva.html">Chat with Triva</a>
+       <a href="about.html">About</a>
+    </div>
+  </nav>
+  <section class="hero">
+    <h1>Welcome to the Triva's hub</h1>
+    <p> Triva which stands for Techinichal Responsive Interface Agent is a evidence based chat agent 
+      that is geared to help the the user with its query  based off the information you  feed it such as file or link
+    </p>
+    <a class="triva-button" href="triva">
+      Talk to Triva AI
+
+    </a>
+  
+  </section>
+     
+   
+</body>
+</html>

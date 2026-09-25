@@ -1,0 +1,403 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triva Chat  </title>
+
+  <style>
+   *{
+
+   }
+   body {
+    margin:0;
+    font-family: Arial,  sans-serif;
+    background:#0b0b0b;
+    color:white;
+    height:100vh;
+    display:flex;
+    flex-direction: column;
+   }
+
+   nav {
+    height:65px;
+    background:#000;
+
+    display: flex;
+    align-items:center;
+    justify-content: space-between ;
+
+    padding :0 25px;
+
+    border-bottom:1px solid #222;
+
+   }
+   .logo{
+    font-size:22px;
+    font-weight:bold;
+
+   }
+   nav a {
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+
+   }
+nav a:hover{
+  color:#1683ff;
+
+}
+
+.chat-container {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+
+  max-width:1000px;
+  width: 100%;
+
+  margin:auto;
+}
+.chat-header {
+ padding : 20px;
+ border-bottom:1px solid #222;
+}
+ .chat-header h1{
+ margin:0;
+ font-size: 24px;
+ }
+
+ .chat-header p{
+  color:#aaa;
+   margin-bottom : 0;
+ }
+ #chat-box{
+  flex:1;
+  overflow-y:auto;
+  padding:25px;
+ }
+ .message{
+  max-width:75%;
+  padding: 14px 18px;
+  margin-bottom:15px ;
+
+  border-radius:12px;
+  
+  line-height: 1.5;
+ }
+ 
+ .user-message {
+ background:#1683ff;
+ margin-left:auto;
+
+ }
+.triva-message {
+  background: #202020;
+  margin-right: auto;
+}  
+.input-area {
+  padding:20px;
+  border-top:1px solid #222;
+  background:#0b0b0b;
+}
+ .link-input{
+  width:100%;
+
+  background: #171717;
+  color:white;
+
+  border:1px solid #333;
+  border-radius:8px;
+
+  padding:12px;
+  margin-bottom:10px;
+
+ }
+ .bottom-row {
+display: flex;
+gap:10px;
+
+ }
+ #message {
+  flex:1;
+
+  background: #171717;
+  color:white;
+
+  border:1px solid #333;
+  border-radius:8px;
+
+  padding:14px;
+  outline:none;
+
+
+ }
+ #file{
+  display:none;
+
+ }
+ .file-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:0 16px;
+  
+  background:#202020;
+  border:1px solid #333;
+
+  border-radius:8px;
+  cursor:pointer;
+
+
+ }
+ .file-button:hover {
+  background: #303030;
+
+ }
+  button {
+    background:1683ff;
+    color:white;
+   
+    border:none;
+    border-radius:8px;
+
+    padding: 0 20px;
+
+    cursor:pointer;
+
+}
+button:hover{
+  background:#006bd6;
+}
+.selected-file{
+ font-size: 13px;
+ color:#aaa;
+ margin-bottom:8px;
+}
+
+@media (max-width:600px){
+
+  .nav-links{
+    display:none;
+  }
+.message {
+  max-width:90%;
+
+}
+.bottom-row {
+  flex-wrap:wrap;
+
+}
+
+#message{
+  width:100%;
+  flex-basis:100%;
+        }
+      }
+ </style>
+
+</head>
+<body>
+  <nav>
+  <div>
+     <div class="logo">
+      Triva Hub
+    </div>
+    <div class="nav-links ">
+      <a href="Trivahub.html">Home</a>
+      <a href="Triva.html">Chat with Triva</a>
+       <a href="about.html">About</a>
+  </div>
+  
+</nav>
+
+<main class="chat-container">
+  <div class="chat-header">
+    <h1>Triva </h1>
+    <p>
+      Upload a file or provide a web link for Triva analyze.
+    </p>
+
+  </div>
+  <div id="chat-box">
+    <div class="message Triva-message">
+     Welcome to Triva AI
+     <br></br>
+     To use troy upload a file or provide a web link 
+     Then ask your question.
+
+    </div>
+  </div>
+  <div class="input-area">
+    <input  
+    type="url"
+    id="link"
+    class="link-input"
+    placeholder="Paste a web link here...."
+    >
+    <div id="selcted-file" class="selected-file">
+      No file selected 
+    </div>
+    <div class="bottom-row">
+      <label for="file" class="file-button">
+
+      </label>
+      <input
+      type="file"
+      id="file"
+      onchange="showFile()"
+      >
+      <input
+      type="text"
+      id="message"
+      placeholder="Ask Triva about your source... "
+      >
+      <button onclick="sendMessage()">
+        Send
+      </button>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+  let selectedFile=null;
+  function showFile(){
+    const fileInput=document.getELementById("file");
+    selectedFile = fileInput.files[0];
+    const display= document.getElementbyId("selected-file");
+     if (selectedFile){
+      display.textContent =
+      "Selected:" + selectedFile.name;
+}else{
+  display.textContent=
+  "No file seleceted";
+
+
+    }
+  }
+
+  function addMessage(text, type) {
+    const chatBox =
+       document.getElementById("chat-box");
+
+       const message = 
+       document.createElement("div");
+
+       message.className = 
+       "message"+ type;
+
+       message.textContent = text;
+
+       chatBox.appendChild(message);
+
+       chatBox.scrollTop=
+       chatBox.scrollHeight;
+  
+
+  }
+  async function sendMessage() {
+    const messageInput =
+    document.getElementById("message");
+
+    const linkInput=
+    document.getElementById("link");
+
+    const message =
+    messageInput.value.trim();
+    
+    const link =
+    linkInput.value.trim();
+
+    /*
+    Triva requires a file OR a web link.
+    */
+
+    if(!selectedFile && !link){
+    addmessage(
+    "Please upload a file or provide a web link before asking Triva a question.",
+      "Triva-message"
+    );
+
+    return;
+   
+  } 
+   if(!message){
+    addMessage(
+    "Please enter a question for Triva.",
+    "Triva-message"
+
+   );
+   return;
+   } 
+   addMessage(
+    message,
+    "user-message"
+   );
+   messageInput.value="";
+
+   const formData =
+   new FormData();
+   
+   formData.append*(
+    "message",
+    message
+   );
+   if (selectedFile) {
+    formData.append(
+      "file",
+      selectedFile
+    );
+   }
+   if(link){
+    formData.append(
+      "link",
+      link
+    );
+
+   }
+try{
+  const response =
+  await fetch(
+    "/chat",
+    {
+      method:"POST",
+     body:formData
+    }
+      
+  );
+ const data = 
+ await response.json();
+ if(data.response ){
+  addMessage(
+    data.response,
+    "Triva-message"
+
+  );
+
+ }else{
+  addMessage(
+      data.error || "Something went wrong.",
+      "Triva-message"
+ ); 
+}
+} catch (error) {
+  addMessages(
+    "Triva could not connect to the server.",
+    "Triva-message"
+);
+
+     } 
+   
+    }
+
+   
+</script>
+</body>
+</html>
+
+  
+ 
+ 
+ 
+

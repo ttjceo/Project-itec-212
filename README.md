@@ -11,3 +11,5 @@ Trivahub.html- The home page
 Triva.html- the front end chat page that makes everything interactive 
 about.html- The page giving a mini description about trivia 
 app.py- back end  development  that makes the ai  function 
+
+ I used chat got 5.6  to enhance and organize  the specifications of my code 

@@ -6,401 +6,469 @@
   <title>Triva Chat  </title>
 
   <style>
-   *{
-   box-sizing: border-box;
-   }
-   body {
-    margin:40px auto; 
-    font-family: Arial,  sans-serif;
-    background:#0b0b0b;
-    color:white;
-    height:100vh;
-    display:flex;
-    flex-direction: column;
-   }
+    * {
+    
+      box-sizing : border-box;
+    }
+    body{
+      margin: 0;
+       font-family: Arial, sans-serif;
+       background:0b0b0b;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+     
+    }
 
-   nav {
-    height:65px;
-    background:#000;
+    nav {
+     min-height: 70px;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 25px;
+      border-bottom: 1px solid #222;
+    }
+     .logo {
+      font-size: 22px;
+      font-weight: bold;
+     }
+     nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+     }
+     nav a:hover {
+      color: #1683ff;
+     }
+     .triva-layout {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+     }
+     .saved-chats {
+      width: 250px;
+      flex-shrink: 0;
+      background: #151515;
+      border-right: 1px solid #333;
+      padding: 20px;
+      overflow-y: auto;
+     }
+     
+      
+      .saved-chats h3{
+        margin-top:0;
+        color:white;
 
-    display: flex;
-    align-items:center;
-    justify-content: space-between ;
-
-    padding :0 25px;
-
-    border-bottom:1px solid #222;
-
-   }
-   .logo{
-    font-size:22px;
-    font-weight:bold;
-
-   }
-   nav a {
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-
-   }
-nav a:hover{
-  color:#1683ff;
-
-}
-
-.chat-container {
-  flex:1;
-  display:flex;
-  flex-direction:column;
-
-  max-width:1000px;
-  width: 100%;
-
-  margin:auto;
-}
-.chat-header {
- padding : 20px;
- border-bottom:1px solid #222;
-}
- .chat-header h1{
- margin:0;
- font-size: 24px;
- }
-
- .chat-header p{
-  color:#aaa;
-   margin-bottom : 0;
- }
- #chat-box{
-  flex:1;
-  overflow-y:auto;
-  padding:25px;
- }
- .message{
-  max-width:75%;
-  padding: 14px 18px;
-  margin-bottom:15px ;
-
-  border-radius:12px;
-  
-  line-height: 1.5;
- }
- 
- .user-message {
- background:#1683ff;
- margin-left:auto;
-
- }
-.Triva-message {
-  background: #202020;
-  margin-right: auto;
-}  
-.input-area {
-  padding:20px;
-  border-top:1px solid #222;
-  background:#0b0b0b;
-}
- 
- .bottom-row {
-display: flex;
-gap:10px;
-
- }
- #message {
-  flex:1;
-
-  background: #171717;
-  color:white;
-
-  border:1px solid #333;
-  border-radius:8px;
-
-  padding:14px;
-  outline:none;
-
-
- }
- #files{
-  display:none;
-
- }
- .file-button{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:0 16px;
-  
-  background:#202020;
-  border:1px solid #333;
-
-  border-radius:8px;
-  cursor:pointer;
-
-
- }
- .file-button:hover {
-  background: #303030;
-
- }
-  button {
-    background:#1683ff;
-    color:white;
-   
-    border:none;
-    border-radius:8px;
-
-    padding: 0 20px;
-
-    cursor:pointer;
-
-}
-button:hover{
-  background:#006bd6;
-}
-.selected-file{
- font-size: 13px;
- color:#aaa;
- margin-bottom:8px;
-}
-
-@media (max-width:600px){
-
-  .nav-links{
-    display:none;
-  }
-.message {
-  max-width:90%;
-
-}
-.bottom-row {
-  flex-wrap:wrap;
-
-}
-
-#message{
-  width:100%;
-  flex-basis:100%;
-        }
       }
- </style>
+      .saved-chats p{
+        color:#aaa;
+        font-size: 14px;
 
+      }
+       /* Main chat area*/
+       .triva-layout .chat-container {
+        flex: 1;
+        width:100%;
+        max-width: none ;
+        min-width:0;
+        margin:0;
+        display:flex;
+        flex-direction: column;
+        min-height:0;
+
+       }
+       .chat-header {
+        padding: 20px;
+        border-bottom: 1px solid #222;
+       }
+       .chat-header h1 {
+        margin: 0;
+        color: white;
+       }
+       .chat-header p {
+        color: #aaa;
+        margin-bottom: 0;
+
+       }
+       
+
+       /* Three Boxes summary ,question ,find a file*/
+       .feature-container{
+       display:grid;
+       grid-template-columns:repeat(3,1fr) ;
+       gap:15px;
+       padding:20px;
+
+       }
+      .feature-box {
+        background:#202020;
+        border : 1px  solid  #333;
+        border-radius:12px;
+        padding:20px;
+        text-align:center;
+
+      }
+      .feature-box.active{
+        border-color:#1683ff;
+        background:#142338;
+      }
+
+      .feature-box h3{
+        margin-top:0;
+        font-size:17px;
+
+
+      }
+      .feature-box p{
+        color:#aaa;
+        font-size:13px;
+        min-height:45px;
+      }
+
+
+      .feature-box button{
+        background:#1683ff;
+        padding:12px;
+        width:100%;
+
+      }
+      #chat-box {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding: 25px;
+      }
+      .message {
+        max-width: 75%;
+        padding: 14px 18px;
+        margin-bottom: 15px;
+        border-radius: 12px;
+        line-height: 1.5;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere ;
+      }
+      .user-message {
+        background: #1683ff;
+        
+        margin-left: auto;
+      }
+      .triva-message{
+        background:#202020;
+        margin-right:auto;
+        
+      }
+      /* Messages occupy available space*/
+      .triva-layout #chat-box{
+        flex:1;
+        overflow-y:auto;
+      }
+      
+        /* Keep chat input at the bottom */
+      .triva-message{
+        background:#202020;
+        margin-right:auto;
+      }
+      .input-area{
+        margin-top:auto;
+        width:100%;
+        flex-shrink:0;
+        padding:20px ;
+        border-top:1px solid #222;
+        background:#0b0b0b;
+      }
+
+      .bottom-row{
+        display:flex;
+        gap:10px;
+      }
+      #message{
+        flex:1;
+        min-width: 0;
+        background:#171717;
+        color:white;
+        border:1px solid #333;
+        padding:14px;
+        outline:none;
+      }
+
+      #files
+      #folder{
+        display:none
+      }
+
+      .file-button{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:12px 16px;
+        background:#202020;
+        border:1px solid #333;
+        border-radius:8px;
+        cursor:pointer;
+        font-size:14px;
+      }
+      .file-button:hover{
+        background:#303030;
+
+      }
+      button {
+        background:#1683ff;
+        color:white;
+        border:none;
+        padding:12px 20px;
+        border-radius:8px;
+        cursor:pointer;
+        
+      }
+      button:hover{
+        background:#006bd6;
+      }
+      button:disabled{
+        opacity:0.5;
+        cursor:not-allowed;
+      }
+      .selected-file{
+        font-size:13px;
+        color:#aaa;
+        margin-bottom:10px;
+      }
+      .feature-status{
+        color:#8fc2ff;
+        font-size:13px;
+        margin-bottom:10px;
+      }
+
+      /*mobile layout*/
+      @media (max-width: 700px) {
+        .nav-links{
+          display: none;
+        }
+        .triva-layout{
+          flex-direction: column;
+        }
+        .saved-chats {
+          width: 100%;
+          max-height: 130px;
+          border-right: none;
+          border-bottom: 1px solid #333;
+        }
+        .feature-container {
+          grid-template-columns: 1fr;
+
+
+        }
+       .message{
+        max-width: 90%;
+       }
+       .bottom-row{
+        flex-wrap: wrap;
+       }
+       #message{
+        width:100%;
+        flex-basis:100%;
+       }
+      }
+
+  
+    
+  </style>
 </head>
 <body>
   <nav>
-  
-     <div class="logo">
-      Triva Hub
+    <div class="logo">Triva</div>
+    <div class="nav-links">
+      <a href="{% url 'trivahub' %}">Home</a>
+      <a href="{% url 'triva' %}">Chat with Triva</a>
     </div>
-    <div class="nav-links ">
-      <a href="Trivahub.html">Home</a>
-      <a href="Triva.html">Chat with Triva</a>
-       <a href="about.html">About</a>
-  </div>
-  
-</nav>
-
-<main class="chat-container">
-  <div class="chat-header">
-    <h1>Triva </h1>
-    <p>
-      Upload a file or provide a folder for Triva to  analyze.
-    </p>
-
-  </div>
-  <div id="chat-box">
-    <div class="message Triva-message">
-     Welcome to Triva AI
-     <br></br>
-     To use Triva upload a file or folder  
-     Then ask your question.
-
-    </div>
-  </div>
-  <div class="input-area">
-    <div
-    id="selected-file"
-    class="selected-file"
-    >
-    No file selected 
-  </div>
-    
-    <div class="bottom-row">
-      <!-- Upload Button-->
-      <label 
-      for="files" 
-      class="file-button">
-      Upload Files
-      </label>
+  </nav>
+  <div class="triva-layout">
+    <aside class="saved-chats">
+      <h3>Saved Chats</h3>
+         
+      {% if user.is_authenticated %}
+      <div id="saved-chats-list">
+        <p>Your saved chats will appear here </p>
+      </div>
+      {% else %}
+        <p>Login to view your saved chats.</p>
+      {% endif %}
       
-      <input
+    </aside>
+  <main class="chat-container">
+     <div class="chat-header ">
+      <h1>Chat with Triva</h1>
+      <p>Upload files or a folder and choose how  
+        triva should analyze your documents  .
+
+      </p>
+     </div>
+     <div class="feature-container">
+     <div class="feature-box " id="summarize-box">
+      <h3>Summarize</h3>
+      <p >Generating a summary of your  uploaded documents.</p>
+
+       <button 
+       type="button "
+       onclick="select('summarize')">
+        Summarize
+      </button>
+     
+     </div>
+
+     <div class="feature-box" id="find-box">
+      <h3>Find a document </h3>
+      <p>Find a document using a filename or keyword</p>
+
+       <button
+       type="button"
+       onclick="selectFeature('find')">
+        Find Document
+      </button>
+     </div>
+     
+
+     <div class="feature-box active" id="question-box">
+      <h3>Ask a question</h3>
+      <p>Ask Triva a question about your uploaded documents.</p>
+
+       <button
+       type="button"
+       onclick="selectFeature('question')">
+        Ask a Question
+          </button>
+         </div>
+     </div>
+      
+<div id="chat-box" aria-live="polite">
+  <div class="messages Triva-message">
+    Welcome to Triva Ai !
+    1.Select a feature.
+    2.Upload your files or folder.
+    3.Enter a question or keyword if needed.
+    4. Press Send.
+   </div>
+</div>
+<div class="input-area">
+  </div>
+  <div id="selected-file" class="selected-file">
+    No file selected.
+  </div>
+  <div class="bottom-row">
+    <label for="files" class="file-button">
+      Upload Files 
+    </label>
+    <input
       type="file"
       id="files"
+      accept=""
+      multiple
+      onchange="showFiles()" 
+    >
+    <label for="folder" class="file-button">
+      Upload Folder
+    </label>
+    <input
+      type="file"
+      id="folder"
+      webkitdirectory
       multiple
       onchange="showFiles()"
-      >
-      <input
-      type="text"
-      id="message"
-      placeholder="Ask Triva about your source... "
-      >
-      <button onclick="sendMessage()">
-        Send
-      </button>
-      </div>
+    >
+    <input 
+     type="text"
+     id="message"
+     placeholder=" Ask Triva about your documents..."
+     aria-label= "Question or search keyword"
+
+     >
+     <button
+      type="button"
+      id="sendbutton"
+      onclick="sendMessage()">
+      Send
+     </button>
+       
+       
     </div>
-</main>
+ </main>
+  </div>
+
+ <!-- DJANGO CSRF TOKEN -->
+ {% csrf_token %}
+</form>
 <script>
-
-  let selectedFiles = [ ];
-
-  function showFiles() {
-   
-    const fileInput=
-      document.getElementById("files");
+  let selectedFiles = [];
+  let selectedFeature = 'question';
+  //Select a feature
+  function selectFeature(feature) {
+    selectedFeature = feature;
+    const boxes = document.querySelectorAll('.feature-box');
+    boxes.forEach(function(box) {
+      box.classList.remove('active');
+    });
+    const messageInput =
+    document.getElementById('message');
     
-     selectedFiles = 
-      Array.from(fileInput.files);
-  
-    const display = 
-    document.getElementById("selected-file");
-    
-    if (selectedFiles.length > 0) {
-      display.textContent =
-     selectedFiles.length +  "file(s) selected";
-     
-}else{
-  display.textContent=
-  "No file seleceted";
+    const status= 
+    document.getElementById('feauture-status');
 
+    if (feature === 'summarize') {
+      document.getElementById('summarize-box').classList.add('active');
 
+      messageInput.placeholder=
+      "Optional: What should the summary focus on? "
+
+      status.textContent = 
+      "Selected feature: Summarize";
+      
+
+    } else if (feature === 'find') {
+      document.getElementById('find-box')
+      .classList.add('active');
+
+      messageInput.placeholder=
+      "Enter a filename or keyword ...."
+
+      status.textContent =
+      "Selected feature: Find a Document";
+    }else{
+      document.getElementById('question-box')
+      .classList.add('active');
+
+      messageInput.placeholder=
+      "Ask Triva about your documents..."
+
+      status.textContent =
+      "Selected feature: Ask a Question";
     }
   }
+  // DISPLAY SELECTED FILES
+  function showFiles() {
 
-   function addMessage(text, type) {
-       const chatBox =
-       document.getElementById("chat-box");
+    const fileInput = 
+    document.getElementById('files');
+   
+    const folderInput =
+    document.getElementById('folder');
+    
+    const individualFiles =
+    Array.from(fileInput.files);
 
-       const message = 
-       document.createElement("div");
+    const folderFiles =
+    Array.from(folderInput.files);
 
-       message.className = 
-       "message " + type;
-
-       message.textContent = 
-       text;
-
-       chatBox.appendChild(message);
-
-       chatBox.scrollTop=
-       chatBox.scrollHeight;
-  
-
+    selectedFiles =
+    [...individualFiles,
+     ...folderFiles
+    ];
   }
-  async function sendMessage() {
     
-   const messageInput =
-    document.getElementById("message");
 
- 
-
-    const message =
-    messageInput.value.trim();
-    
-  
-
-
-    /*
-    Triva requires a file  or folder 
-    */
-
-    if(selectedFiles.length===0) {
-    addMessage(
-    "Please upload a file or folder  before asking Triva a question.",
-      "Triva-message"
-    );
-
-    return;
-   
-  } 
-   if(!message){
-    addMessage(
-    "Please enter a question for Triva.",
-    "Triva-message"
-
-   );
-   return;
-   } 
-   addMessage(
-    message,
-    "user-message"
-   );
-
-   messageInput.value="";
-
-   const formData =
-   new FormData();
-   
-   formData.append(
-    "message",
-    message
-   );
-    selectedFiles.forEach(function(file) {
-    
-      formData.append(
-        "files",
-      file
-
-      );
-   });
-  
-   
-  
-
-   
-try{
-
-  const response =
-  await fetch("/chat", {
       
-    method:"POST",
-     body:formData
-    
-      
-  });
- const data = 
- await response.json();
- 
- if(data.response ) {
-  addMessage(
-    data.response,
-    "Triva-message"
-
-  );
-
- }else{
-  addMessage(
-      data.error || "Something went wrong.",
-      "Triva-message"
- ); 
-}
-} catch (error) {
-  addMessage(
-    "Triva could not connect to the server.",
-    "Triva-message"
-);
-
-        } 
-   
-      }
-
-   
+  
 </script>
+  
 </body>
 </html>
-
-  
- 
- 
- 
-
